@@ -1,0 +1,35 @@
+# Netlify Configuration
+# Documentation: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "npm run build:all"
+  publish = "frontend/dist/frontend/browser"
+  functions = "backend/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# API redirects - proxy /api/* to serverless functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# SPA fallback - all other routes serve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"

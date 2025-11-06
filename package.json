@@ -1,0 +1,22 @@
+{
+  "name": "catering-order-management",
+  "version": "1.0.0",
+  "description": "Catering Order Management System - Full-stack serverless application",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "catering",
+    "order-management",
+    "angular",
+    "serverless"
+  ],
+  "author": "",
+  "license": "MIT"
+}
